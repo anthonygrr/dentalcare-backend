@@ -9,8 +9,8 @@ import com.dentalcare.tony.api.infrastructure.persistence.specification.DoctorSp
 import com.dentalcare.tony.api.infrastructure.persistence.specification.PatientSpecification;
 import com.dentalcare.tony.api.presentation.dto.response.DoctorResponse;
 import com.dentalcare.tony.api.presentation.dto.response.PatientResponse;
-import com.dentalcare.tony.api.presentation.dto.resquest.DoctorCreationRequest;
-import com.dentalcare.tony.api.presentation.dto.resquest.PatientCreationRequest;
+import com.dentalcare.tony.api.presentation.dto.request.DoctorCreationRequest;
+import com.dentalcare.tony.api.presentation.dto.request.PatientCreationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -3,7 +3,7 @@ package com.dentalcare.tony.api.presentation.controller;
 import com.dentalcare.tony.api.application.service.DoctorService;
 import com.dentalcare.tony.api.domain.filter.DoctorFilter;
 import com.dentalcare.tony.api.presentation.dto.response.DoctorResponse;
-import com.dentalcare.tony.api.presentation.dto.resquest.DoctorCreationRequest;
+import com.dentalcare.tony.api.presentation.dto.request.DoctorCreationRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

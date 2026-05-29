@@ -9,8 +9,8 @@ import com.dentalcare.tony.api.domain.filter.AppointmentFilter;
 
 import com.dentalcare.tony.api.presentation.dto.response.AppointmentResponse;
 
-import com.dentalcare.tony.api.presentation.dto.resquest.AppointmentCreateRequest;
-import com.dentalcare.tony.api.presentation.dto.resquest.AppointmentUpdateRequest;
+import com.dentalcare.tony.api.presentation.dto.request.AppointmentCreateRequest;
+import com.dentalcare.tony.api.presentation.dto.request.AppointmentUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

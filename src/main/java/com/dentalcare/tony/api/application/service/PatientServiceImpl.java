@@ -1,7 +1,7 @@
 package com.dentalcare.tony.api.application.service;
 
 import com.dentalcare.tony.api.domain.filter.PatientFilter;
-import com.dentalcare.tony.api.presentation.dto.resquest.PatientCreationRequest;
+import com.dentalcare.tony.api.presentation.dto.request.PatientCreationRequest;
 import com.dentalcare.tony.api.presentation.dto.response.PatientResponse;
 import com.dentalcare.tony.api.infrastructure.persistence.repository.JpaPatientRepository;
 import com.dentalcare.tony.api.infrastructure.persistence.specification.PatientSpecification;

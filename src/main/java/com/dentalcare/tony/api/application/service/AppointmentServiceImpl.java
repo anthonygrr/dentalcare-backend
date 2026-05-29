@@ -7,14 +7,14 @@ import com.dentalcare.tony.api.domain.entity.MedicalRecordEntity;
 import com.dentalcare.tony.api.domain.entity.PatientEntity;
 import com.dentalcare.tony.api.domain.enums.AppointmentStatus;
 import com.dentalcare.tony.api.domain.filter.AppointmentFilter;
-import com.dentalcare.tony.api.domain.repository.AppointmentRepository;
-import com.dentalcare.tony.api.domain.repository.DoctorRepository;
-import com.dentalcare.tony.api.domain.repository.PatientRepository;
+import com.dentalcare.tony.api.infrastructure.persistence.repository.AppointmentRepository;
+import com.dentalcare.tony.api.infrastructure.persistence.repository.JpaDoctorRepository;
 import com.dentalcare.tony.api.infrastructure.persistence.repository.JpaMedicalRecordRepository;
+import com.dentalcare.tony.api.infrastructure.persistence.repository.JpaPatientRepository;
 import com.dentalcare.tony.api.infrastructure.persistence.specification.AppointmentSpecification;
 import com.dentalcare.tony.api.presentation.dto.response.AppointmentResponse;
-import com.dentalcare.tony.api.presentation.dto.resquest.AppointmentCreateRequest;
-import com.dentalcare.tony.api.presentation.dto.resquest.AppointmentUpdateRequest;
+import com.dentalcare.tony.api.presentation.dto.request.AppointmentCreateRequest;
+import com.dentalcare.tony.api.presentation.dto.request.AppointmentUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,8 +28,8 @@ import java.time.LocalDate;
 public class AppointmentServiceImpl implements AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
-    private final PatientRepository patientRepository;
-    private final DoctorRepository doctorRepository;
+    private final JpaPatientRepository patientRepository;
+    private final JpaDoctorRepository doctorRepository;
     private final JpaMedicalRecordRepository medicalRecordRepository;
 
 

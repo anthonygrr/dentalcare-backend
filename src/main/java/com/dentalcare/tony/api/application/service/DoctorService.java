@@ -2,7 +2,7 @@ package com.dentalcare.tony.api.application.service;
 
 import com.dentalcare.tony.api.domain.filter.DoctorFilter;
 import com.dentalcare.tony.api.presentation.dto.response.DoctorResponse;
-import com.dentalcare.tony.api.presentation.dto.resquest.DoctorCreationRequest;
+import com.dentalcare.tony.api.presentation.dto.request.DoctorCreationRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
