@@ -1,5 +1,6 @@
 package com.dentalcare.tony.api.domain.entity;
 
+import com.dentalcare.tony.api.domain.enums.PermissionName;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +17,6 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private PermissionName name;
 }
