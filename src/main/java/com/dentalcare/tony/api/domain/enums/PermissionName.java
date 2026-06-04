@@ -1,12 +1,21 @@
 package com.dentalcare.tony.api.domain.enums;
 
 public enum PermissionName {
-    USER_CREATE,
-    USER_UPDATE,
-    USER_DELETE,
-    USER_ASSIGN_ROLE,
+        USER_READ,
+        USER_UPDATE,
 
-    DOCTOR_CREATE,
-    DOCTOR_UPDATE,
-    DOCTOR_DELETE
+        PATIENT_CREATE,
+        PATIENT_READ,
+        PATIENT_UPDATE,
+        PATIENT_DELETE,
+
+        DOCTOR_CREATE,
+        DOCTOR_READ,
+        DOCTOR_UPDATE,
+        DOCTOR_DELETE,
+
+        APPOINTMENT_CREATE,
+        APPOINTMENT_READ,
+        APPOINTMENT_UPDATE,
+        APPOINTMENT_DELETE
 }
