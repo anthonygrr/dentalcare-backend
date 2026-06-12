@@ -3,6 +3,7 @@ package com.dentalcare.tony.api.presentation.exception;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -84,6 +85,57 @@ public class GlobalExceptionHandler {
                 .build();
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+    }
+
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ProblemDetail handleUserNotFound(
+            UserNotFoundException ex
+    ) {
+
+        ProblemDetail problem =
+                ProblemDetail.forStatus(
+                        HttpStatus.NOT_FOUND
+                );
+
+        problem.setTitle("User Not Found");
+        problem.setDetail(ex.getMessage());
+
+        return problem;
+    }
+
+    @ExceptionHandler(
+            InvalidCredentialsException.class
+    )
+    public ProblemDetail handleInvalidCredentials(
+            InvalidCredentialsException ex
+    ) {
+
+        ProblemDetail problem =
+                ProblemDetail.forStatus(
+                        HttpStatus.UNAUTHORIZED
+                );
+
+        problem.setTitle("Invalid Credentials");
+        problem.setDetail(ex.getMessage());
+
+        return problem;
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ProblemDetail handleBusinessException(
+            BusinessException ex
+    ) {
+
+        ProblemDetail problem =
+                ProblemDetail.forStatus(
+                        HttpStatus.BAD_REQUEST
+                );
+
+        problem.setTitle("Business Error");
+        problem.setDetail(ex.getMessage());
+
+        return problem;
     }
 
 }
