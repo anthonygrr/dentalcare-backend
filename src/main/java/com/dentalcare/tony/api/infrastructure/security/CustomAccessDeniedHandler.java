@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
@@ -14,9 +15,20 @@ import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Writes the 403 JSON body for authenticated-but-forbidden requests.
+ *
+ * <p>Uses the Spring-managed {@code ObjectMapper}: a raw {@code new
+ * ObjectMapper()} lacks the jsr310 module and cannot serialize the
+ * {@code LocalDateTime} timestamp, which used to crash this handler
+ * mid-response (empty body + broken connection).</p>
+ */
 @Component
+@RequiredArgsConstructor
 public class CustomAccessDeniedHandler
         implements AccessDeniedHandler {
+
+    private final ObjectMapper objectMapper;
 
     @Override
     public void handle(
@@ -39,7 +51,7 @@ public class CustomAccessDeniedHandler
         body.put("message", "Access denied");
         body.put("path", request.getRequestURI());
 
-        new ObjectMapper()
+        objectMapper
                 .writeValue(response.getOutputStream(), body);
     }
 }
