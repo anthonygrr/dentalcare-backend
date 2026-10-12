@@ -12,10 +12,5 @@ public class ApiApplication {
 
 
 
-//    TODO:
-//    Agregar Exceptions
-//    Agregar Swagger
-//    Agregar Spring Security con jWT
-//    Organizar Archivos
-//    Agregar Cache
+
 }
