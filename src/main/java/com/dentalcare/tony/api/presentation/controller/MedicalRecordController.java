@@ -6,6 +6,7 @@ import com.dentalcare.tony.api.application.service.MedicalRecordServiceImpl;
 import com.dentalcare.tony.api.domain.filter.MedicalRecordFilter;
 import com.dentalcare.tony.api.presentation.dto.response.MedicalRecordResponse;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Medical Records")
 @RestController
 @RequestMapping("/medical-records")
 @RequiredArgsConstructor

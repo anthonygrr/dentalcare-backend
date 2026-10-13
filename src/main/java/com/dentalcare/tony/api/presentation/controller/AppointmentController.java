@@ -12,6 +12,7 @@ import com.dentalcare.tony.api.presentation.dto.response.AppointmentResponse;
 import com.dentalcare.tony.api.presentation.dto.request.AppointmentCreateRequest;
 import com.dentalcare.tony.api.presentation.dto.request.AppointmentUpdateRequest;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
+@Tag(name = "Appointments")
 @RestController
 @RequestMapping("/appointments")
 @RequiredArgsConstructor

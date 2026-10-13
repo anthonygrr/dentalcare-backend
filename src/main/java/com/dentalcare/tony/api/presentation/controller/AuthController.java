@@ -5,9 +5,11 @@ import com.dentalcare.tony.api.presentation.dto.request.LoginRequest;
 import com.dentalcare.tony.api.presentation.dto.request.RefreshTokenRequest;
 import com.dentalcare.tony.api.presentation.dto.response.AuthResponse;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Auth")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor

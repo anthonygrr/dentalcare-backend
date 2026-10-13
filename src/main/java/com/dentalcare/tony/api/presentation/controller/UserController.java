@@ -4,9 +4,11 @@ import com.dentalcare.tony.api.application.service.UserService;
 import com.dentalcare.tony.api.presentation.dto.request.UpdatePasswordRequest;
 import com.dentalcare.tony.api.presentation.dto.response.UserResponse;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Users")
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor

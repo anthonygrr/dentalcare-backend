@@ -6,11 +6,13 @@ import com.dentalcare.tony.api.presentation.dto.response.DoctorResponse;
 import com.dentalcare.tony.api.presentation.dto.request.DoctorCreationRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Doctors")
 @RestController
 @RequestMapping("/doctors")
 @RequiredArgsConstructor

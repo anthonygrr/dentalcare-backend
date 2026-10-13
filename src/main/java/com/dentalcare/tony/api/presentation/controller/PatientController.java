@@ -6,6 +6,7 @@ import com.dentalcare.tony.api.presentation.dto.response.PatientResponse;
 import com.dentalcare.tony.api.presentation.dto.request.PatientCreationRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
+@Tag(name = "Patients")
 @RestController
 @RequestMapping("/patients")
 @CrossOrigin(origins = "http://localhost:8080")
