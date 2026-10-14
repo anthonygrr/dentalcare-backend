@@ -1,6 +1,6 @@
 # DentalCare API — Dental Clinic Backend
 
-REST API for a dental clinic management system: patients, doctors, appointments, and medical records, secured with JWT and rate-limited per client. Built with Spring Boot 3.5 and PostgreSQL, with interactive documentation via Swagger UI. Designed to pair with the [dentalcare-front](../dentalcare-front) admin dashboard.
+REST API for a dental clinic management system: patients, doctors, appointments, and medical records, secured with JWT and rate-limited per client. Built with Spring Boot 3.5 and PostgreSQL, with interactive documentation via Swagger UI. Designed to pair with the [dentalcare-front](https://github.com/anthonygrr/dentalcare-frontend) admin dashboard.
 
 ---
 
@@ -176,4 +176,24 @@ Schema is managed by Hibernate (`ddl-auto=update`) — **dev only**, there are n
 
 ## License
 
-MIT License — see the [frontend repository](../dentalcare-front#licen) for the full text.
+MIT License
+
+Copyright (c) 2026 DentalCare
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
