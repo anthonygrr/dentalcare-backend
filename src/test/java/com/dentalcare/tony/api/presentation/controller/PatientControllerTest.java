@@ -2,20 +2,25 @@ package com.dentalcare.tony.api.presentation.controller;
 
 import com.dentalcare.tony.api.application.service.PatientService;
 import com.dentalcare.tony.api.infrastructure.security.JwtAuthenticationFilter;
+import com.dentalcare.tony.api.presentation.dto.response.PatientImportResponse;
 import com.dentalcare.tony.api.presentation.dto.response.PatientResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -80,5 +85,38 @@ class PatientControllerTest {
         mockMvc.perform(get("/patients/404"))
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.message").value("Server Internal Error"));
+    }
+
+    @Test
+    void importsPatientsFromMultipartCsvAndReturnsTheSummary() throws Exception {
+        PatientImportResponse summary = new PatientImportResponse(
+                2, 1, 1,
+                List.of(new PatientImportResponse.RowError(3, "The email already exists"))
+        );
+        when(patientService.importPatients(any())).thenReturn(summary);
+
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "patients.csv", "text/csv",
+                """
+                name,email,phone,birthDate
+                Import Alpha,imp-a@example.com,555-2001,1990-01-15
+                Import Dup,dup@example.com,555-2002,1991-02-16
+                """.getBytes(StandardCharsets.UTF_8)
+        );
+
+        mockMvc.perform(multipart("/patients/import").file(file))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.total").value(2))
+                .andExpect(jsonPath("$.imported").value(1))
+                .andExpect(jsonPath("$.failed").value(1))
+                .andExpect(jsonPath("$.errors[0].row").value(3))
+                .andExpect(jsonPath("$.errors[0].message").value("The email already exists"));
+    }
+
+    @Test
+    void rejectsImportWithoutFileWith400() throws Exception {
+        mockMvc.perform(multipart("/patients/import"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.detail").value("CSV file is required"));
     }
 }

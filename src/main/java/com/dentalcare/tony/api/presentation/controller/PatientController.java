@@ -2,8 +2,10 @@ package com.dentalcare.tony.api.presentation.controller;
 
 import com.dentalcare.tony.api.application.service.PatientService;
 import com.dentalcare.tony.api.domain.filter.PatientFilter;
+import com.dentalcare.tony.api.presentation.dto.response.PatientImportResponse;
 import com.dentalcare.tony.api.presentation.dto.response.PatientResponse;
 import com.dentalcare.tony.api.presentation.dto.request.PatientCreationRequest;
+import com.dentalcare.tony.api.presentation.exception.BusinessException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -14,7 +16,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.time.LocalDate;
 
 @Tag(name = "Patients")
@@ -70,6 +75,19 @@ public class PatientController {
     @PostMapping
     public ResponseEntity<PatientResponse> createPatient(@Valid @RequestBody PatientCreationRequest request){
         return ResponseEntity.ok(this.patientService.createPatient(request));
+    }
+
+    @PostMapping("/import")
+    public ResponseEntity<PatientImportResponse> importPatients(
+            @RequestParam(value = "file", required = false) MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            throw new BusinessException("CSV file is required");
+        }
+        try {
+            return ResponseEntity.ok(this.patientService.importPatients(file.getInputStream()));
+        } catch (IOException e) {
+            throw new UncheckedIOException("Failed to read the uploaded file", e);
+        }
     }
 
     @PutMapping("/{id}")

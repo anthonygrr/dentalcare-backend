@@ -111,6 +111,13 @@
 			<version>2.9.1</version>
 		</dependency>
 
+		<!-- CSV patient import (Apache Commons CSV; version is explicit — Boot does not manage it) -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.14.1</version>
+		</dependency>
+
 		<!--        TEST: Testcontainers (PostgreSQL for integration tests) -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
