@@ -83,12 +83,15 @@ Creating patients one HTTP call at a time does not scale when a clinic migrates 
 ## Progress
 
 - [x] Exploration (CodeGraph + DTO/entity/exception/tests read)
-- [ ] T1–T6 implemented
-- [ ] T7 verification observed
-- [ ] T8 code commit(s)
-- [ ] T9 blog guide
-- [ ] T10 docs commit
+- [x] T1–T6 implemented (delegated writer, one batch)
+- [x] T7 verification observed — parent spot check re-ran the full suite
+- [x] T8 code commit(s) — `4968647` feat: add patient CSV import with row-level error reporting
+- [x] T9 blog guide — `docs/blog/patient-csv-import.md` (338 lines, delegated writer)
+- [x] T10 docs commit — `8b05e30` docs: add blog guide for patient CSV import
 
 ## Verification evidence
 
-(pending — record `<command>: <result>` per check after T7)
+- `.\mvnw test` (parent spot check, after writer report): `Tests run: 43, Failures: 0, Errors: 0, Skipped: 0` — `BUILD SUCCESS` (Docker 28.5.2, Testcontainers).
+- New coverage: `PatientCsvParserTest` 6, `PatientControllerTest` 5 (+2), `PatientApiIntegrationTest` 9 (+5).
+- Rate-limit claim in the blog (`api` bucket burst 60, 60/min) spot-checked against `application.properties` (`rate-limit.api.capacity=60`, refill 60/60s) — accurate.
+- RDD off → no native review; ordinary checks only.
